@@ -51,7 +51,7 @@ public class ProdutoRestController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/list")
+    @GetMapping("/findAll")
     public List<Produto> list() {
         return this.service.findAll();
     }
