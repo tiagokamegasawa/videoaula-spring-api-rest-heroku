@@ -12,8 +12,12 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository repository;
 
-    public Produto createProduto(Produto produto ) {
+    public Produto saveProduto(Produto produto ) {
         return repository.save(produto);
+    }
+
+    public Produto getOne(Long id) {
+        return this.repository.getOne(id);
     }
 
     public List<Produto> findAll(){
