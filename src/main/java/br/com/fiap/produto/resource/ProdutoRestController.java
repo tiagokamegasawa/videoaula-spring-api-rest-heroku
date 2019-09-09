@@ -53,6 +53,15 @@ public class ProdutoRestController {
 
     @GetMapping("/findAll")
     public ResponseEntity<List<Produto>> list() {
-        return ResponseEntity.ok(this.service.findAll());
+        System.out.println("ALA PASSOU AQUI NO REQUEST OLHA SO QUE A QUERY DEVOLVEU: ");
+        List<Produto> findAll = this.service.findAll();
+        for (Produto produto : findAll) {
+            System.out.println("ID: " + produto.getId());
+            System.out.println("Código: " + produto.getCodigo());
+            System.out.println("Nome: " + produto.getNome());
+            System.out.println("Qtde Estoque: " + produto.getQtdeEstoque());
+            System.out.println("Valor: " + produto.getValor() + "\n");
+        }
+        return ResponseEntity.ok(findAll);
     }
 }
