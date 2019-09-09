@@ -52,7 +52,7 @@ public class ProdutoRestController {
     }
 
     @GetMapping("/findAll")
-    public List<Produto> list() {
-        return this.service.findAll();
+    public ResponseEntity<List<Produto>> list() {
+        return ResponseEntity.ok(this.service.findAll());
     }
 }
