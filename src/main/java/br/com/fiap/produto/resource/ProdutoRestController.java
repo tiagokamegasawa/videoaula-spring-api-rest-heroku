@@ -3,6 +3,7 @@ package br.com.fiap.produto.resource;
 import br.com.fiap.produto.model.Produto;
 import br.com.fiap.produto.service.ProdutoService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class ProdutoRestController {
 
     @PostMapping
     public ResponseEntity<Long> createProduto(
-            @RequestBody Produto produto) {
+        @RequestBody Produto produto) {
         Produto produtoSave = service.saveProduto(produto);
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoSave.getId());
     }
@@ -64,4 +65,15 @@ public class ProdutoRestController {
         }
         return ResponseEntity.ok(findAll);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Produto> id(@PathVariable Long id) {
+        Optional<Produto> optional = this.service.findById(id);
+        if (optional.isPresent()) {
+            System.out.println("FOUND BY ID: " + id);
+            return ResponseEntity.ok(optional.get());
+        }
+        return ResponseEntity.noContent().build();
+    }
+
 }
