@@ -25,10 +25,12 @@ public class ProdutoRestController {
     private ProdutoService service;
 
     @PostMapping
-    public ResponseEntity<Long> createProduto(
+    public ResponseEntity<Produto> createProduto(
         @RequestBody Produto produto) {
+        System.out.println("INSERT DO PRODUTO");
         Produto produtoSave = service.saveProduto(produto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(produtoSave.getId());
+        System.out.println("SAVE DO PRODUTO");
+        return ResponseEntity.status(HttpStatus.CREATED).body(produtoSave);
     }
 
     @PutMapping("/{id}")
