@@ -24,12 +24,15 @@ public class ProdutoRestController {
     @Autowired
     private ProdutoService service;
 
+    @GetMapping("/splash")
+    public ResponseEntity<Void> splashLoad() {
+        return ResponseEntity.ok().build();
+    }
+
     @PostMapping
     public ResponseEntity<Produto> createProduto(
         @RequestBody Produto produto) {
-        System.out.println("INSERT DO PRODUTO");
         Produto produtoSave = service.saveProduto(produto);
-        System.out.println("SAVE DO PRODUTO");
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoSave);
     }
 
